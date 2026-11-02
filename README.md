@@ -1,40 +1,70 @@
-# Sorting Algorithms Benchmark
+# مشروع مقارنة أداء خوارزميات الترتيب
+## Sorting Algorithms Benchmark
 
-## 1. Project Overview
-This project compares the performance of five sorting algorithms implemented in Java.
+### 1. مقدمة المشروع (Project Overview)
 
-The purpose is to measure and analyze the execution time of each algorithm using different input datasets.
+يهدف هذا المشروع إلى تنفيذ ومقارنة أداء خمس خوارزميات مختلفة لترتيب البيانات باستخدام لغة Java، وذلك من خلال قياس زمن تنفيذ كل خوارزمية عند التعامل مع مجموعة كبيرة من العناصر في حالات مختلفة من ترتيب البيانات.
 
-## 2. Sorting Algorithms
-The project implements the following algorithms:
+يساعد المشروع على دراسة كفاءة خوارزميات الترتيب وفهم تأثير طبيعة البيانات على سرعة التنفيذ، بالإضافة إلى مقارنة التعقيد الزمني لكل خوارزمية.
 
-1. Selection Sort
-2. Insertion Sort
-3. Bubble Sort
-4. Merge Sort
-5. Quick Sort
+### 2. خوارزميات الترتيب المستخدمة (Sorting Algorithms)
 
-## 3. Experimental Setup
-- **Programming Language:** Java
-- **Input Size:** 100,000 elements
-- **Number of Algorithms:** 5
-- **Test Cases:** 4
-- **Time Measurement:** `System.nanoTime()`
-- **Time Unit:** Microseconds (µs)
+تم تنفيذ خمس خوارزميات للترتيب:
 
-## 4. Test Cases
-Each algorithm was tested using four types of input:
+1. **Selection Sort:** الترتيب بالاختيار.
+2. **Insertion Sort:** الترتيب بالإدراج.
+3. **Bubble Sort:** الترتيب بالفقاعات.
+4. **Merge Sort:** الترتيب بالدمج.
+5. **Quick Sort:** الترتيب السريع.
 
-- **Random:** Elements in random order.
-- **Reverse:** Elements arranged in descending order.
-- **Partial:** Partially sorted elements.
-- **Sorted:** Elements already arranged in ascending order.
+### 3. إعداد التجربة (Experimental Setup)
 
-## 5. Benchmark Results
+تم إجراء التجربة باستخدام الإعدادات التالية:
 
-Execution time in microseconds (µs):
+- **لغة البرمجة:** Java.
+- **عدد العناصر:** 100,000 عنصر.
+- **عدد الخوارزميات:** 5.
+- **عدد حالات الاختبار:** 4.
+- **طريقة قياس الزمن:** `System.nanoTime()`.
+- **وحدة قياس الزمن:** الميكروثانية (Microseconds - µs).
+- **تهيئة JVM:** تنفيذ عمليات Warm-up قبل بدء القياس.
 
-| Algorithm | Random | Reverse | Partial | Sorted |
+تم استخدام `System.nanoTime()` لحساب الزمن المستغرق في تنفيذ كل خوارزمية، ثم تحويل الناتج من النانوثانية إلى الميكروثانية.
+
+### 4. حالات الاختبار (Test Cases)
+
+تم اختبار جميع الخوارزميات باستخدام أربع مجموعات مختلفة من البيانات:
+
+1. **Random (بيانات عشوائية):** عناصر يتم إنشاؤها بترتيب عشوائي.
+2. **Reverse (بيانات عكسية):** عناصر مرتبة ترتيبًا تنازليًا.
+3. **Partial (بيانات مرتبة جزئيًا):** تبدأ المصفوفة مرتبة تصاعديًا، ثم تتم إعادة ترتيب قيم 20% من المواقع المختارة عشوائيًا.
+4. **Sorted (بيانات مرتبة):** عناصر مرتبة مسبقًا ترتيبًا تصاعديًا.
+
+### 5. آلية تنفيذ وقياس الأداء (Benchmark Methodology)
+
+تم اتباع الخطوات التالية لإجراء المقارنة:
+
+1. إنشاء مجموعات البيانات الأربع.
+2. تنفيذ عملية Warm-up لتجهيز بيئة تشغيل Java.
+3. إنشاء نسخة مستقلة من مجموعة البيانات لكل خوارزمية، لضمان عدالة المقارنة.
+4. تسجيل وقت البداية باستخدام `System.nanoTime()`.
+5. تنفيذ خوارزمية الترتيب.
+6. تسجيل وقت النهاية وحساب الزمن المستغرق.
+7. تحويل الزمن إلى الميكروثانية.
+8. التحقق من صحة الترتيب باستخدام دالة `isSorted()`.
+9. تخزين النتائج وعرضها في جدول مقارنة نهائي.
+
+معادلة حساب زمن التنفيذ:
+
+`Execution Time = (End Time - Start Time) / 1000`
+
+### 6. نتائج التجربة (Benchmark Results)
+
+يوضح الجدول التالي أزمنة تنفيذ الخوارزميات الخمس في حالات الاختبار المختلفة.
+
+**وحدة القياس: الميكروثانية (µs).**
+
+| خوارزمية الترتيب | عشوائية | عكسية | مرتبة جزئيًا | مرتبة |
 |---|---:|---:|---:|---:|
 | Selection Sort | 5,977,942 | 3,186,874 | 2,037,562 | 2,041,996 |
 | Insertion Sort | 1,015,338 | 2,035,989 | 258,136 | 241 |
@@ -42,11 +72,23 @@ Execution time in microseconds (µs):
 | Merge Sort | 15,005 | 8,104 | 9,601 | 7,291 |
 | Quick Sort | 8,685 | 1,791 | 3,692 | 1,691 |
 
-*Note: Execution times may vary between runs and depending on the computer.*
+**ملاحظة:** أزمنة التنفيذ تمثل نتائج إحدى عمليات التشغيل، وقد تختلف عند إعادة تشغيل البرنامج نتيجة اختلاف ظروف التشغيل وأداء الجهاز.
 
-## 6. Time Complexity
+### 7. الرسم البياني (Performance Comparison Chart)
 
-| Algorithm | Best Case | Average Case | Worst Case |
+يوضح الرسم البياني مقارنة أزمنة تنفيذ خوارزميات الترتيب في حالات الاختبار الأربع، ويساعد على ملاحظة الاختلاف في الأداء بين الخوارزميات.
+
+![الرسم البياني لمقارنة أداء خوارزميات الترتيب](Sorting_Chart.png)
+
+كما يمكن الاطلاع على جدول النتائج من خلال ملف Excel:
+
+[عرض وتحميل نتائج التجربة بصيغة Excel](Sorting_Results.xlsx)
+
+### 8. التعقيد الزمني (Time Complexity)
+
+يوضح الجدول التالي أفضل ومتوسط وأسوأ حالة لكل خوارزمية:
+
+| الخوارزمية | أفضل حالة | متوسط الحالة | أسوأ حالة |
 |---|---|---|---|
 | Selection Sort | O(n²) | O(n²) | O(n²) |
 | Insertion Sort | O(n) | O(n²) | O(n²) |
@@ -54,21 +96,73 @@ Execution time in microseconds (µs):
 | Merge Sort | O(n log n) | O(n log n) | O(n log n) |
 | Quick Sort | O(n log n) | O(n log n) | O(n²) |
 
-## 7. Analysis
-- Quick Sort achieved the shortest execution time in the Random, Reverse, and Partial test cases in this experiment.
-- Insertion Sort performed best when the input was already sorted.
-- Bubble Sort recorded the longest execution time in most test cases.
-- Merge Sort showed relatively consistent performance across the different datasets.
-- The results demonstrate that algorithm performance depends on both the algorithm and the arrangement of input data.
+**ملاحظة:** تعتمد أفضل حالة في Bubble Sort على استخدام خاصية التوقف المبكر (Early Stopping)، الموجودة في تنفيذ المشروع.
 
-## 8. Conclusion
-This experiment demonstrates the importance of selecting an appropriate sorting algorithm based on input size and data arrangement.
+### 9. تحليل النتائج (Results Analysis)
 
-For large datasets, algorithms with O(n log n) average time complexity, such as Merge Sort and Quick Sort, generally perform better than quadratic algorithms.
+من خلال النتائج المسجلة يمكن استخلاص الملاحظات التالية:
 
-## 9. How to Run
-1. Clone or download this repository.
-2. Open the project in NetBeans or another Java IDE.
-3. Run the `SortingBenchmark.java` file.
-4. View the execution times and benchmark report in the console.
+- حققت Quick Sort أقل زمن تنفيذ في حالات البيانات العشوائية والعكسية والمرتبة جزئيًا ضمن هذه التجربة.
+- حققت Insertion Sort أفضل أداء عند التعامل مع البيانات المرتبة مسبقًا.
+- سجلت Bubble Sort أطول زمن تنفيذ في معظم حالات الاختبار.
+- أظهرت Merge Sort أداءً متقاربًا نسبيًا في حالات البيانات المختلفة.
+- تتأثر كفاءة خوارزميات الترتيب بطبيعة البيانات وطريقة توزيع العناصر.
+- أظهرت النتائج تفوق الخوارزميات ذات التعقيد الزمني O(n log n) عمومًا عند التعامل مع مجموعات البيانات الكبيرة.
 
+### 10. تفاصيل تنفيذ Quick Sort
+
+تعد Quick Sort من خوارزميات الترتيب التي تعتمد على مبدأ Divide and Conquer (قسّم تسُد). تبدأ باختيار عنصر يسمى Pivot (المحور)، ثم تقسيم عناصر المصفوفة بناءً على مقارنتها بهذا المحور، بحيث تتحرك العناصر الأصغر إلى الجهة اليسرى والعناصر الأكبر إلى الجهة اليمنى.
+
+في هذا المشروع، تم اختيار العنصر الأوسط من الجزء الحالي للمصفوفة ليكون المحور، باستخدام المعادلة:
+
+`pivot = array[low + (high - low) / 2]`
+
+تم تنفيذ خوارزمية Quick Sort باستخدام طريقة التقسيم (Partitioning)، مع اختيار العنصر الأوسط من الجزء الحالي للمصفوفة كمحور (Pivot).
+
+
+يتم بعد ذلك مقارنة العناصر بالمحور وتحريك مؤشري البداية والنهاية لتقسيم العناصر إلى أجزاء، ثم تطبيق الخوارزمية بشكل متكرر على الأجزاء الناتجة.
+
+تم اختيار العنصر الأوسط لتقليل احتمالية حدوث تقسيم غير متوازن في بعض حالات البيانات، وتحسين الأداء في كثير من الحالات
+
+
+بعد اختيار المحور، يتم استخدام مؤشرين:
+- المؤشر الأول يبدأ من اليسار ويتحرك نحو اليمين.
+- المؤشر الثاني يبدأ من اليمين ويتحرك نحو اليسار.
+
+تتم مقارنة العناصر بالمحور، وعند العثور على عنصر في الجهة غير المناسبة يتم تبديله مع العنصر المقابل. تستمر العملية حتى ينتهي التقسيم، ثم يتم استدعاء الخوارزمية بشكل متكرر على الأجزاء الناتجة.
+
+يتميز Quick Sort بمتوسط تعقيد زمني يبلغ O(n log n)، مما يجعله مناسبًا لترتيب مجموعات البيانات الكبيرة في كثير من الحالات، بينما قد يصل تعقيده في أسوأ حالة إلى O(n²) عند حدوث تقسيمات غير متوازنة.
+
+تم اعتماد اختيار العنصر الأوسط كمحور في هذا المشروع بهدف تحسين فرص الحصول على تقسيم متوازن وتقليل احتمالية تدهور الأداء في بعض أنواع البيانات.
+.
+
+### 11. التحقق من صحة النتائج (Correctness Verification)
+
+بعد تنفيذ كل خوارزمية، يتم استخدام الدالة `isSorted()` للتحقق من أن عناصر المصفوفة مرتبة تصاعديًا.
+
+إذا لم تكن المصفوفة مرتبة بالشكل الصحيح، يقوم البرنامج بإظهار خطأ وإيقاف التنفيذ.
+
+وقد اجتازت الخوارزميات اختبارات صحة الترتيب في عملية التشغيل التي تم تسجيل نتائجها.
+
+### 12. الخلاصة (Conclusion)
+
+أوضحت هذه التجربة أهمية مقارنة خوارزميات الترتيب من حيث زمن التنفيذ والتعقيد الزمني عند التعامل مع مجموعات بيانات مختلفة.
+
+وأظهرت النتائج أن Quick Sort وMerge Sort مناسبتان عمومًا للتعامل مع البيانات الكبيرة، بينما يمكن أن تحقق Insertion Sort أداءً ممتازًا عندما تكون البيانات مرتبة مسبقًا أو شبه مرتبة.
+
+كما تبين أن اختيار خوارزمية الترتيب المناسبة يعتمد على حجم البيانات وطبيعتها، وليس على اسم الخوارزمية فقط.
+
+### 13. طريقة تشغيل المشروع (How to Run)
+
+1. تحميل أو استنساخ مستودع المشروع من GitHub.
+2. فتح المشروع باستخدام NetBeans أو أي بيئة تطوير تدعم Java.
+3. فتح ملف `SortingBenchmark.java`.
+4. تشغيل البرنامج.
+5. متابعة نتائج تنفيذ الخوارزميات في نافذة الإخراج (Console).
+
+### 14. ملفات المشروع (Project Files)
+
+- `SortingBenchmark.java`: الكود الرئيسي لتنفيذ التجربة والخوارزميات.
+- `README.md`: التقرير وشرح المشروع والنتائج.
+- `Sorting_Results.xlsx`: ملف Excel الذي يحتوي على جدول النتائج.
+- `Sorting_Chart.png`: الرسم البياني لمقارنة أداء الخوارزميات.
